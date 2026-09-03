@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ty-assistant — Privacy Policy</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0 auto; padding: 3rem 1.25rem 4rem; max-width: 44rem;
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  h1 { font-size: 1.7rem; margin: 0 0 .25rem; }
+  h2 { font-size: 1.05rem; margin: 2.25rem 0 .6rem; }
+  .sub { opacity: .7; margin: 0 0 2rem; }
+  ul { padding-left: 1.2rem; }
+  li { margin: .35rem 0; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; }
+  footer { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.35); opacity: .75; font-size: .9rem; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+
+<h1>Privacy Policy</h1>
+<p class="sub">ty-assistant &middot; effective 3 September 2026</p>
+
+<p>
+  ty-assistant is a private, self-hosted assistant operated by one individual for their own use.
+  It has no other users and no public sign-up. This policy explains what data the app touches and
+  what happens to it. See the <a href="./index.html">home page</a> for what the app does.
+</p>
+
+<h2>1. Data the app accesses</h2>
+<ul>
+  <li><strong>Google Calendar events</strong> — read-only, through <code>calendar.readonly</code>. Used to answer schedule questions and to compose a daily briefing.</li>
+  <li><strong>Google account email address</strong> — through <code>openid</code> and <code>userinfo.email</code>. Used only to label which account was connected.</li>
+  <li><strong>Messages the owner sends the app</strong> — through Telegram.</li>
+</ul>
+<p>
+  The app does not request write access to Google Calendar and cannot create, change, or delete
+  calendar entries. It does not access contacts, files, or mail.
+</p>
+
+<h2>2. How the data is used</h2>
+<p>
+  Solely to produce answers and briefings for the account owner, in the owner's own Telegram chat.
+  The data is not used for advertising, profiling, resale, or any purpose unrelated to the features
+  described on the home page.
+</p>
+
+<h2>3. Where the data goes</h2>
+<ul>
+  <li><strong>The owner's own machine</strong> — the app runs there as a Docker container. Application logs stay local.</li>
+  <li><strong>Anthropic</strong> — message text and any calendar details needed to answer are sent to Anthropic's Claude API to generate the response, and are handled under Anthropic's terms.</li>
+  <li><strong>Telegram</strong> — carries the conversation between the owner and the app.</li>
+  <li><strong>Supabase (hosted PostgreSQL)</strong> — stores the encrypted Google refresh token, per-session bookkeeping, and usage counters.</li>
+</ul>
+<p>
+  Google user data is not sold, and is not shared with anyone beyond the processors listed above,
+  which act only to deliver the app's own features.
+</p>
+
+<h2>4. Storage and retention</h2>
+<ul>
+  <li>Calendar events are fetched on demand and are <strong>not</strong> written to the database. They may appear briefly in the app's transient runtime files on the owner's machine, which are discarded when the container is rebuilt.</li>
+  <li>The Google refresh token is kept until access is revoked or the account entry is deleted.</li>
+  <li>Session and usage records contain bookkeeping (identifiers, counts, timestamps), not calendar content.</li>
+</ul>
+
+<h2>5. Security</h2>
+<p>
+  The Google refresh token is encrypted with AES-256-GCM before being stored. The encryption key
+  exists only as a file on the owner's machine, mounted read-only into the container. It is never
+  placed in the database, in environment variables, or in the container image. The app exposes no
+  inbound network ports.
+</p>
+
+<h2>6. Limited Use</h2>
+<p>
+  ty-assistant's use and transfer of information received from Google APIs adheres to the
+  <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services
+  User Data Policy</a>, including the Limited Use requirements.
+</p>
+
+<h2>7. Revoking access and deletion</h2>
+<p>
+  Access can be withdrawn at any time at
+  <a href="https://myaccount.google.com/permissions">Google Account permissions</a>, which
+  immediately invalidates the stored token. To have the stored account entry and associated records
+  deleted, contact the address below.
+</p>
+
+<h2>8. Children</h2>
+<p>The app is not directed at children and is used only by its owner.</p>
+
+<h2>9. Changes</h2>
+<p>If this policy changes, the effective date above is updated.</p>
+
+<footer>
+  Contact: <a href="mailto:tky8402@gmail.com">tky8402@gmail.com</a>
+</footer>
+
+</body>
+</html>

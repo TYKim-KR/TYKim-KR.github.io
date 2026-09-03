@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ty-assistant</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0 auto; padding: 3rem 1.25rem 4rem; max-width: 44rem;
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  h1 { font-size: 1.9rem; margin: 0 0 .25rem; }
+  h2 { font-size: 1.1rem; margin: 2.25rem 0 .6rem; }
+  .sub { opacity: .7; margin: 0 0 2rem; }
+  ul { padding-left: 1.2rem; }
+  li { margin: .35rem 0; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; }
+  footer { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,.35); opacity: .75; font-size: .9rem; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+
+<h1>ty-assistant</h1>
+<p class="sub">A personal Telegram assistant, self-hosted and used by a single person.</p>
+
+<h2>What it is</h2>
+<p>
+  ty-assistant is a private assistant that its owner talks to through Telegram. It runs
+  continuously on the owner's own machine as a Docker container. It is not a product, it is
+  not offered to other users, and there is no sign-up.
+</p>
+
+<h2>What it does</h2>
+<ul>
+  <li>Answers questions and runs small tasks sent as Telegram messages.</li>
+  <li>Reads the owner's Google Calendar (read-only) to answer schedule questions and to send a daily briefing.</li>
+  <li>Reads and writes notes in the owner's own local knowledge folder.</li>
+</ul>
+
+<h2>Google account access</h2>
+<p>
+  The app requests only the scopes it needs to do the above:
+</p>
+<ul>
+  <li><code>https://www.googleapis.com/auth/calendar.readonly</code> — read calendar events. It cannot create, edit, or delete anything.</li>
+  <li><code>openid</code>, <code>https://www.googleapis.com/auth/userinfo.email</code> — identify which Google account was connected.</li>
+</ul>
+<p>
+  Access is granted by the account owner and can be withdrawn at any time from
+  <a href="https://myaccount.google.com/permissions">Google Account permissions</a>.
+</p>
+
+<h2>Privacy</h2>
+<p>
+  How Google user data is handled is described in the <a href="./privacy.html">Privacy Policy</a>.
+</p>
+
+<footer>
+  Contact: <a href="mailto:tky8402@gmail.com">tky8402@gmail.com</a>
+</footer>
+
+</body>
+</html>
