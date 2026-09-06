@@ -34,12 +34,14 @@
 <h2>1. Data the app accesses</h2>
 <ul>
   <li><strong>Google Calendar events</strong> — read-only, through <code>calendar.readonly</code>. Used to answer schedule questions and to compose a daily briefing.</li>
+  <li><strong>Gmail messages</strong> — read-only, through <code>gmail.readonly</code>. Messages are read to produce short summaries on request and to detect booking confirmations; message bodies are never stored.</li>
   <li><strong>Google account email address</strong> — through <code>openid</code> and <code>userinfo.email</code>. Used only to label which account was connected.</li>
   <li><strong>Messages the owner sends the app</strong> — through Telegram.</li>
 </ul>
 <p>
   The app does not request write access to Google Calendar and cannot create, change, or delete
-  calendar entries. It does not access contacts, files, or mail.
+  calendar entries. It does not access contacts or files. It does not send mail and cannot modify
+  or delete messages.
 </p>
 
 <h2>2. How the data is used</h2>
@@ -64,8 +66,9 @@
 <h2>4. Storage and retention</h2>
 <ul>
   <li>Calendar events are fetched on demand and are <strong>not</strong> written to the database. They may appear briefly in the app's transient runtime files on the owner's machine, which are discarded when the container is rebuilt.</li>
+  <li>Mail contents are not written to the database. Only the Gmail message identifier and, when a message is a booking confirmation, a short booking summary (booking reference, place, dates) are stored.</li>
   <li>The Google refresh token is kept until access is revoked or the account entry is deleted.</li>
-  <li>Session and usage records contain bookkeeping (identifiers, counts, timestamps), not calendar content.</li>
+  <li>Session and usage records contain bookkeeping (identifiers, counts, timestamps), not calendar or mail content.</li>
 </ul>
 
 <h2>5. Security</h2>
