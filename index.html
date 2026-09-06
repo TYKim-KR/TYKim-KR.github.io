@@ -36,6 +36,7 @@
 <ul>
   <li>Answers questions and runs small tasks sent as Telegram messages.</li>
   <li>Reads the owner's Google Calendar (read-only) to answer schedule questions and to send a daily briefing.</li>
+  <li>Reads the owner's Gmail (read-only) to summarise messages and spot booking confirmations.</li>
   <li>Reads and writes notes in the owner's own local knowledge folder.</li>
 </ul>
 
@@ -45,6 +46,7 @@
 </p>
 <ul>
   <li><code>https://www.googleapis.com/auth/calendar.readonly</code> — read calendar events. It cannot create, edit, or delete anything.</li>
+  <li><code>https://www.googleapis.com/auth/gmail.readonly</code> — read mail. It cannot send, modify, or delete anything.</li>
   <li><code>openid</code>, <code>https://www.googleapis.com/auth/userinfo.email</code> — identify which Google account was connected.</li>
 </ul>
 <p>
