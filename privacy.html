@@ -23,7 +23,7 @@
 <body>
 
 <h1>Privacy Policy</h1>
-<p class="sub">ty-assistant &middot; effective 3 September 2026</p>
+<p class="sub">ty-assistant &middot; effective 3 October 2026</p>
 
 <p>
   ty-assistant is a private, self-hosted assistant operated by one individual for their own use.
@@ -34,7 +34,7 @@
 <h2>1. Data the app accesses</h2>
 <ul>
   <li><strong>Google Calendar events</strong> — read-only, through <code>calendar.readonly</code>. Used to answer schedule questions and to compose a daily briefing.</li>
-  <li><strong>Gmail messages</strong> — read-only, through <code>gmail.readonly</code>. Messages are read to produce short summaries on request and to detect booking confirmations; message bodies are never stored.</li>
+  <li><strong>Gmail messages</strong> — read-only, through <code>gmail.readonly</code>. Messages are read to produce short summaries on request and to detect booking confirmations; message bodies are not written to the database.</li>
   <li><strong>Google account email address</strong> — through <code>openid</code> and <code>userinfo.email</code>. Used only to label which account was connected.</li>
   <li><strong>Messages the owner sends the app</strong> — through Telegram.</li>
 </ul>
@@ -54,7 +54,7 @@
 <h2>3. Where the data goes</h2>
 <ul>
   <li><strong>The owner's own machine</strong> — the app runs there as a Docker container. Application logs stay local.</li>
-  <li><strong>Anthropic</strong> — message text and any calendar details needed to answer are sent to Anthropic's Claude API to generate the response, and are handled under Anthropic's terms.</li>
+  <li><strong>Anthropic</strong> — message text and any calendar details needed to answer are sent to Anthropic's Claude API to generate the response. When the owner asks the app to search or summarize mail, the matching messages (sender, subject, attachment names, and up to 8,000 characters of the body) are also sent to produce the summaries. Both are handled under Anthropic's terms.</li>
   <li><strong>Telegram</strong> — carries the conversation between the owner and the app.</li>
   <li><strong>Supabase (hosted PostgreSQL)</strong> — stores the encrypted Google refresh token, per-session bookkeeping, and usage counters.</li>
 </ul>
@@ -66,7 +66,7 @@
 <h2>4. Storage and retention</h2>
 <ul>
   <li>Calendar events are fetched on demand and are <strong>not</strong> written to the database. They may appear briefly in the app's transient runtime files on the owner's machine, which are discarded when the container is rebuilt.</li>
-  <li>Mail contents are not written to the database. Only the Gmail message identifier and, when a message is a booking confirmation, a short booking summary (booking reference, place, dates) are stored.</li>
+  <li>Mail contents are not written to the database. Like calendar events, mail text sent for a summary may appear in the app's transient runtime files until the container is rebuilt. Only the Gmail message identifier and, when a message is a booking confirmation, a short booking summary (booking reference, place, dates) are stored.</li>
   <li>The Google refresh token is kept until access is revoked or the account entry is deleted.</li>
   <li>Session and usage records contain bookkeeping (identifiers, counts, timestamps), not calendar or mail content.</li>
 </ul>
