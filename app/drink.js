@@ -47,7 +47,9 @@
     return Array.prototype.map.call(bytes, function (b) { return abc[b % abc.length]; }).join("");
   }
 
+  var sending = false; // [저장]을 누른 뒤엔 더 고치지 않는다 — 보낸 번호로 바뀐 값이 남으면 다음 저장이 중복으로 버려진다(Codex 10-15 medium)
   function add(t, u, n) {
+    if (sending) return;
     var k = key(t, u);
     var it = items.find(function (x) { return key(x.t, x.u) === k; });
     if (!it) {
@@ -135,7 +137,7 @@
   var storage = tg && tg.isVersionAtLeast && tg.isVersionAtLeast("9.0") ? tg.DeviceStorage : null;
   var draftKey = "drink_" + seat.replace(/[^A-Za-z0-9_-]/g, "").slice(0, 40);
   function saveDraft() {
-    if (!storage) return;
+    if (!storage || sending) return;
     try { storage.setItem(draftKey, JSON.stringify({ k: nonce, items: picked() })); } catch (e) {}
   }
   function loadDraft(done) {
@@ -159,7 +161,8 @@
 
   function send() {
     var list = picked().map(function (x) { return { t: x.t, u: x.u, n: x.n }; });
-    if (!list.length || !tg || !tg.sendData) return;
+    if (sending || !list.length || !tg || !tg.sendData) return;
+    sending = true;
     var payload = JSON.stringify({ v: 3, s: seat, k: nonce, items: list });
     try { tg.disableClosingConfirmation(); } catch (e) {}
     info("보내는 중…");
