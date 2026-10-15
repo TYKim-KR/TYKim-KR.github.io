@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- 통신 금지 규칙: 이 페이지는 어디로도 요청을 보내지 못한다(fetch·XHR·WebSocket·이미지·폼 전부 막힘). 스크립트는 이 사이트 파일과 텔레그램 공식 스크립트만. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://telegram.org; style-src 'self'; img-src 'none'; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; base-uri 'none'; form-action 'none'">
-<title>술 넣기 체험판</title>
-<!-- 체험판 — 가짜 예시 데이터뿐, 개인정보 없음. 텔레그램 사용자 정보(initData)는 읽지도 보내지도 않는다. -->
-<link rel="stylesheet" href="trial.css">
+<title>술 넣기</title>
+<!-- 개인 데이터 없음. 술 목록은 주소 # 뒤로만 받고(서버로 안 감), 고른 술은 텔레그램 봇으로만 보낸다. 텔레그램 사용자 정보(initData)는 읽지 않는다. -->
+<link rel="stylesheet" href="drink.css?v=1">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-<div id="head">🍺 1차 · 술 넣기 <span class="tag">체험판</span></div>
+<div id="head">🍺 술 넣기</div>
 <div id="grid"></div>
 <div id="rows"></div>
 <button id="other" class="ghost">+ 다른 술</button>
@@ -19,13 +19,12 @@
   <div class="label">어떤 술?</div>
   <div id="types" class="chips"></div>
   <div id="unitBox" hidden>
-    <div class="label" id="unitLabel">단위?</div>
+    <div class="label" id="unitLabel">얼마나?</div>
     <div id="units" class="chips"></div>
   </div>
   <button id="pickCancel" class="ghost">취소</button>
 </div>
 <div id="info"></div>
-<button id="fallbackSend" hidden>저장 (텔레그램 밖)</button>
-<script src="trial.js?v=2"></script>
+<script src="drink.js?v=1"></script>
 </body>
 </html>
