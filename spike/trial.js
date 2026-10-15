@@ -156,8 +156,20 @@
     var payload = JSON.stringify({ v: 2, items: list, restored: restored, csp: cspBlocked, readyMs: readyMs, sentAt: Date.now() });
     if (!tg || !tg.sendData) { info("텔레그램 밖이라 보낼 수 없어."); return; }
     try { tg.disableClosingConfirmation(); } catch (e) {}
-    var go = function () { try { tg.sendData(payload); } catch (e) { info("보내기 실패: " + (e && e.message)); } };
-    if (storage) { try { storage.removeItem(DRAFT_KEY, go); } catch (e) { go(); } } else go();
+    info("보내는 중…");
+    clearTimeout(saveTimer); // 남은 작성 중 저장이 비운 값을 덮지 않게
+    // 작성 중 값을 비우고 보낸다. 아이폰은 removeItem(값 null)에 답 이벤트가 안 와 콜백을 기다리면 영영 안 보냈다(10-15 체험) —
+    // 저장이 되는 setItem("[]")으로 비우고, 답이 늦어도 0.4초 뒤엔 보낸다(한 번만).
+    var sent = false;
+    var go = function () {
+      if (sent) return;
+      sent = true;
+      try { tg.sendData(payload); } catch (e) { info("보내기 실패: " + (e && e.message)); }
+    };
+    if (storage) {
+      setTimeout(go, 400);
+      try { storage.setItem(DRAFT_KEY, "[]", go); } catch (e) { go(); }
+    } else go();
   }
   $("fallbackSend").addEventListener("click", send);
 
