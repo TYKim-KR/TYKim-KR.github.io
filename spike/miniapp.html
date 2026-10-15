@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>미니 앱 실험</title>
+<!-- 미니 앱 0단계 실험 페이지 — 개인정보 없음. 텔레그램 사용자 정보(initData)는 읽지도 보내지도 않는다. 보내는 건 숫자(시간·누름 수)와 플랫폼 이름뿐. -->
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: system-ui, sans-serif; margin: 16px; background: var(--tg-theme-bg-color, #fff); color: var(--tg-theme-text-color, #111); }
+  #n { font-size: 56px; text-align: center; margin: 12px 0; }
+  button { display: block; width: 100%; font-size: 20px; padding: 14px; margin: 8px 0; border: 0; border-radius: 10px;
+           background: var(--tg-theme-button-color, #2a7ae2); color: var(--tg-theme-button-text-color, #fff); }
+  #info { white-space: pre-wrap; font-size: 14px; opacity: .8; }
+</style>
+</head>
+<body>
+<h3>🧪 미니 앱 실험</h3>
+<div id="n">0</div>
+<button id="plus">+1 (누르자마자 숫자가 바뀌는지)</button>
+<button id="send">보내기 (아래 키보드로 열었을 때만 됨)</button>
+<div id="info"></div>
+<script>
+  const tg = window.Telegram && window.Telegram.WebApp;
+  if (tg) { tg.ready(); tg.expand(); }
+  const readyMs = Math.round(performance.now()); // 웹뷰가 이 페이지를 열기 시작한 때부터 준비까지
+  const hashKept = location.hash.includes("k=hashtest"); // 주소 # 뒤 우리 값이 텔레그램 값과 같이 남는가(값 자체는 안 보낸다)
+  let taps = 0, maxTapMs = 0;
+  const show = (s) => { document.getElementById("info").textContent = s; };
+  document.getElementById("plus").addEventListener("pointerdown", () => {
+    const start = performance.now();
+    taps += 1;
+    document.getElementById("n").textContent = String(taps);
+    requestAnimationFrame(() => { maxTapMs = Math.max(maxTapMs, performance.now() - start); });
+  });
+  document.getElementById("send").addEventListener("click", () => {
+    const payload = { v: 1, platform: tg ? tg.platform : "none", version: tg ? tg.version : "", readyMs, taps, maxTapMs: Math.round(maxTapMs), hashKept, sentAt: Date.now() };
+    if (!tg || !tg.sendData) { show("보내기 기능이 없어(텔레그램 밖이거나 인라인으로 연 경우)."); return; }
+    try { tg.sendData(JSON.stringify(payload)); } catch (e) { show("보내기 실패: " + (e && e.message)); }
+  });
+  show(`${tg ? tg.platform : "텔레그램 밖"} · v${tg ? tg.version : "-"} · 화면 준비 ${readyMs}ms · # 값 유지: ${hashKept ? "예" : "아니"}`);
+</script>
+</body>
+</html>
