@@ -1,0 +1,26 @@
+:root { color-scheme: light dark; }
+body { font-family: system-ui, sans-serif; margin: 12px 14px 90px; background: var(--tg-theme-bg-color, #fff); color: var(--tg-theme-text-color, #111);
+       -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+#head { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+.tag { font-size: 12px; font-weight: 400; padding: 2px 6px; border-radius: 6px; background: var(--tg-theme-secondary-bg-color, #eee); }
+#grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+#grid button { min-height: 64px; font-size: 15px; line-height: 1.25; border: 0; border-radius: 12px;
+               background: var(--tg-theme-button-color, #2a7ae2); color: var(--tg-theme-button-text-color, #fff); }
+#grid button:active { transform: scale(.96); }
+.row { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--tg-theme-secondary-bg-color, #ddd); }
+.row .name { flex: 1; font-size: 16px; }
+.row .count { min-width: 64px; text-align: right; font-size: 18px; font-variant-numeric: tabular-nums; }
+.row button { width: 44px; height: 40px; font-size: 22px; border: 0; border-radius: 10px;
+              background: var(--tg-theme-secondary-bg-color, #eee); color: var(--tg-theme-text-color, #111); }
+.row button:disabled { opacity: .3; }
+button.ghost { width: 100%; margin-top: 12px; padding: 12px; font-size: 16px; border: 1px dashed var(--tg-theme-hint-color, #999); border-radius: 10px;
+               background: transparent; color: var(--tg-theme-link-color, #2a7ae2); }
+#picker { margin-top: 12px; padding: 10px; border-radius: 12px; background: var(--tg-theme-secondary-bg-color, #f2f2f2); }
+.label { font-size: 14px; opacity: .75; margin: 4px 0 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { padding: 10px 12px; font-size: 15px; border: 0; border-radius: 10px;
+                background: var(--tg-theme-bg-color, #fff); color: var(--tg-theme-text-color, #111); }
+.chips button.on { background: var(--tg-theme-button-color, #2a7ae2); color: var(--tg-theme-button-text-color, #fff); }
+#info { margin-top: 14px; font-size: 13px; opacity: .7; white-space: pre-wrap; }
+#fallbackSend { width: 100%; margin-top: 10px; padding: 14px; font-size: 17px; border: 0; border-radius: 10px; background: #2a7ae2; color: #fff; }
+[hidden] { display: none !important; }
