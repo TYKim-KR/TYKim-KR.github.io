@@ -17,6 +17,7 @@ body { font-family: system-ui, sans-serif; margin: 12px 14px 90px; background: v
            background: var(--tg-theme-button-color, #2a7ae2); color: var(--tg-theme-button-text-color, #fff); }
 #timer { margin-top: 14px; padding: 12px; border-radius: 12px; text-align: center; background: var(--tg-theme-secondary-bg-color, #f2f2f2); }
 #timer.done { outline: 2px solid var(--tg-theme-button-color, #2a7ae2); }
+#timerName { font-size: 13px; opacity: .7; }
 #timerVal { font-size: 40px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .timerBtns { display: flex; gap: 8px; margin-top: 8px; }
 .timerBtns button { flex: 1; padding: 10px; font-size: 15px; border: 0; border-radius: 10px;

@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://telegram.org; style-src 'self'; img-src 'none'; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; base-uri 'none'; form-action 'none'">
 <title>세트 넣기 체험</title>
 <!-- 체험판: 종목과 값은 주소 # 뒤의 가짜 예시뿐(서버로 안 감). 고른 세트는 텔레그램 봇으로만 보내고, 봇은 답장만 하고 저장하지 않는다. initData는 읽지 않는다. -->
-<link rel="stylesheet" href="sets.css?v=1">
+<link rel="stylesheet" href="sets.css?v=2">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
@@ -23,11 +23,12 @@
   <button id="addSet" class="primary">＋ 세트 추가</button>
 </div>
 <div id="timer" hidden>
-  <div id="timerVal">1:30</div>
+  <div id="timerName" class="tname"></div>
+  <div id="timerVal"></div>
   <div class="timerBtns"><button id="tMinus">−15초</button><button id="tStop">끝</button><button id="tPlus">+15초</button></div>
 </div>
 <div id="sets"></div>
 <div id="info"></div>
-<script src="sets.js?v=1"></script>
+<script src="sets.js?v=2"></script>
 </body>
 </html>
