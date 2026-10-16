@@ -1,0 +1,29 @@
+:root { color-scheme: light dark; }
+body { font-family: system-ui, sans-serif; margin: 12px 14px 90px; background: var(--tg-theme-bg-color, #fff); color: var(--tg-theme-text-color, #111);
+       -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+#head { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+.tag { font-size: 12px; font-weight: 400; padding: 2px 6px; border-radius: 6px; background: var(--tg-theme-secondary-bg-color, #eee); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.chips button { padding: 10px 12px; font-size: 15px; border: 0; border-radius: 10px;
+                background: var(--tg-theme-secondary-bg-color, #eee); color: var(--tg-theme-text-color, #111); }
+.chips button.on { background: var(--tg-theme-button-color, #2a7ae2); color: var(--tg-theme-button-text-color, #fff); }
+.chips button .n { font-size: 12px; opacity: .8; }
+.stepper { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+.stepper button { width: 64px; height: 56px; font-size: 26px; border: 0; border-radius: 12px;
+                  background: var(--tg-theme-secondary-bg-color, #eee); color: var(--tg-theme-text-color, #111); }
+.stepper button:active, .primary:active { transform: scale(.96); }
+.stepper .val { flex: 1; text-align: center; font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.primary { width: 100%; margin-top: 6px; padding: 14px; font-size: 17px; border: 0; border-radius: 12px;
+           background: var(--tg-theme-button-color, #2a7ae2); color: var(--tg-theme-button-text-color, #fff); }
+#timer { margin-top: 14px; padding: 12px; border-radius: 12px; text-align: center; background: var(--tg-theme-secondary-bg-color, #f2f2f2); }
+#timer.done { outline: 2px solid var(--tg-theme-button-color, #2a7ae2); }
+#timerVal { font-size: 40px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.timerBtns { display: flex; gap: 8px; margin-top: 8px; }
+.timerBtns button { flex: 1; padding: 10px; font-size: 15px; border: 0; border-radius: 10px;
+                    background: var(--tg-theme-bg-color, #fff); color: var(--tg-theme-text-color, #111); }
+.row { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--tg-theme-secondary-bg-color, #ddd); }
+.row .name { flex: 1; font-size: 15px; }
+.row button { width: 40px; height: 36px; font-size: 16px; border: 0; border-radius: 10px;
+              background: var(--tg-theme-secondary-bg-color, #eee); color: var(--tg-theme-text-color, #111); }
+#info { margin-top: 14px; font-size: 13px; opacity: .7; white-space: pre-wrap; }
+[hidden] { display: none !important; }
